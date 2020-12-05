@@ -36,7 +36,7 @@ for k, v in valid_passports.items():
     iyr = int(v["iyr"]) in range(2010, 2021)
     eyr = int(v["eyr"]) in range(2020, 2031)
     hgt = bool(re.match(
-        "(1[5-8][0-9]cm|19[0-3]cm|59in|6[0-9]in|7[0-6]in)", v["hgt"]))
+          "(1[5-8][0-9]cm|19[0-3]cm|59in|6[0-9]in|7[0-6]in)", v["hgt"]))
     hcl = bool(re.match("#([a-f]?[0-9]?){6}", v["hcl"]))
     ecl = v["ecl"].lower() in valid_eyes
     pid = bool(re.match("[0-9]{9}$", v["pid"]))
