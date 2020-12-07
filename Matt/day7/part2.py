@@ -45,10 +45,7 @@ for line in data:
 
 
 def count_bags(outer_bag):
-  """
-  This function adds the number of each inner bag and multiplies that count by the count returned
-  by calling itself on the inner bag color. If the bag contains no other bags, do not return a count.
-  """
+  
   count = 0
   if "contents" in bags[outer_bag]:
     for num,inner_bag in bags[outer_bag]["contents"]:
