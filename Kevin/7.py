@@ -640,14 +640,13 @@ def recursive_count(count, bags):
     return len(bag_set)
 
 final_count = recursive_count(0, [])
-#print(final_count)
+print(final_count)
 
 
 """two"""
 def get_bag_object(name):
     for b in bag_objects:
         if b.name == name:
-            #print(name)
             return b
 
 sum = 0
@@ -656,9 +655,7 @@ def bag_summer(bag, prev_quantity):
     depth_sum = 0
     children = bag.contains
     for colour, quantity in children.items():
-        print(quantity)
         depth_sum += quantity
-    print(depth_sum, prev_quantity)
     depth_sum *= prev_quantity
     sum += depth_sum
     for colour, quantity in children.items():
