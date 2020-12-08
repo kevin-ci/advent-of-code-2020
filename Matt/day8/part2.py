@@ -34,15 +34,17 @@ class Machine:
     def nop(self):
         self.pointer += 1
         return self.pointer
-    
+
     def run(self, insts):
         while True:
             self.addresses.append(self.pointer)
             i = insts[self.pointer].split(" ")
-            if self.debug and not self.flipped and self.pointer not in self.flipped_address and i[0] != "nop":
+            if self.debug and not self.flipped and self.pointer not in self.flipped_address \
+                 and i[0] != "acc":
                 self.flipped = True
                 self.flipped_address.append(self.pointer)
-                i[0] = "jmp" if i[0] == "nop" else "jmp"
+                print(f"** Flipped address {self.pointer} **")
+                i[0] = "jmp" if i[0] == "nop" else "nop"
 
             if i[0] == "jmp":
                 ret = self.jmp(i[1])
