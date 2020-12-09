@@ -1,14 +1,13 @@
 from itertools import permutations
 
 with open("input.txt") as f:
-    data = f.read().split("\n")
+    data = [int(i) for i in f.read().split("\n")]
 
-for d in range(len(data)):
-    data[d] = int(data[d])
+preamble = 25
 
-for d in range(26, len(data)):
+for d in range(preamble + 1, len(data)):
 
-    numbers = data[d - 26 : d]
+    numbers = data[d - (preamble + 1):d]
     
     target = data[d]
 

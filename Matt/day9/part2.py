@@ -1,8 +1,5 @@
 with open("input.txt") as f:
-    data = f.read().split("\n")
-
-for d in range(len(data)):
-    data[d] = int(data[d])
+    data = [int(i) for i in f.read().split("\n")]
 
 target = 144381670
 
