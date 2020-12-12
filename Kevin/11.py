@@ -92,8 +92,8 @@ LLLLLLLL.LLLL.LLLLLLLLL.LLLLLLLLL.LLLLL.LLLLL.L.LLLL.LLLLL.LLLLLLLLLLLLLLLLL.LLL
 LLLLLLLL.LLLL.LLLLLLLLLLLLLL.LLLL.LLLLLLLLLLL.LLLLLLLLLLLL.LLLLLLLL.LLLLLLLL.LLLLLLL.L.LLLLL.LL
 LLLLLLLL.LLLL.LLLLLLLLL.LLLLL.LLLLLLLLL.LLLLL.LLLLLLLLLLLL.LLLLLLLL.LLLLLLLLLLLLLLLL.LLLLLLLLLL"""
 
+"""one"""
 seat_array = [list(i) for i in input.split("\n")]
-
 
 def next_generation(array):
     input_copy = copy.deepcopy(array)
@@ -116,5 +116,37 @@ def next_generation(array):
 
 while sorted(seat_array) != sorted(next_generation(seat_array)):
     seat_array = next_generation(seat_array)
+count = collections.Counter(c for sublist in seat_array for c in sublist)
+print(count['#'])
+
+"""two"""
+seat_array = [list(i) for i in input.split("\n")]
+moves = [[-1,-1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
+
+def recursive_line(array, x, y, dir):
+    if x+dir[1] >= 0 and y+dir[0] >= 0:
+        if x+dir[1] < len(array) and y+dir[0] < len(array[0]):
+            if array[x+dir[1]][y+dir[0]] == '#':
+                return 1
+            elif array[x+dir[1]][y+dir[0]] != 'L':
+                return recursive_line(array, x+dir[1], y+dir[0], dir)
+    return 0
+
+def modified_next_generation(array):
+    input_copy = copy.deepcopy(array)
+    for x in range(0, len(array)):
+        for y in range(0, len(array[x])):
+            occupied_adjacent = 0
+            for m in moves:
+                occupied_adjacent += recursive_line(array, x, y, m)            
+            if array[x][y] == 'L' and occupied_adjacent == 0:
+                input_copy[x][y] = '#'
+            elif array[x][y] == '#':
+                if occupied_adjacent >= 5:
+                    input_copy[x][y] = 'L'
+    return input_copy
+
+while sorted(seat_array) != sorted(modified_next_generation(seat_array)):
+    seat_array = modified_next_generation(seat_array)
 count = collections.Counter(c for sublist in seat_array for c in sublist)
 print(count['#'])
