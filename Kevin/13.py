@@ -17,12 +17,6 @@ for n in bus_nums:
 print(wait * bus)
 
 """two"""
-full_input = [i for i in input[1].split(',')]
-spaces = [0]
-for c, n in enumerate(bus_nums):
-    if n != bus_nums[-1]:
-        spaces.append(int(full_input.index(str(bus_nums[c+1])) - (full_input.index(str(n)) + 1)))
-
 # Chinese Remainder Theorem code stolen from here: https://rosettacode.org/wiki/Chinese_remainder_theorem#Python_3.6
 
 from functools import reduce
