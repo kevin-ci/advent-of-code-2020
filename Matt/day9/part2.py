@@ -7,7 +7,7 @@ for d in range(len(data)):
     data_range = []
     running_total = target
     for n in range(d, len(data)):
-        running_total -= data[n]
+        running_total += data[n]
         data_range.append(data[n])
         if running_total == 0 and len(data_range) > 1:
             data_range.sort()
