@@ -13,8 +13,7 @@ for d in data:
     else:
         num = int(d[1])
         mem = format(int(d[0][4:-1]), "b")
-        padding = "0" * (len(mask) - len(mem))
-        mem = padding + mem
+        mem = f"{'0' * (len(mask) - len(mem))}{mem}"
         masked_address = ""
 
         for n in range(len(mask)):

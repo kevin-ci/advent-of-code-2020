@@ -10,8 +10,7 @@ for d in data:
         mask = d[1]
     else: 
         num = format(int(d[1]), "b")
-        padding = "0" * (len(mask) - len(num))
-        num = padding + num
+        num = f"{'0' * (len(mask) - len(num))}{num}"
         l = len(mask) - len(num)
         return_num = ""
         for n in range(len(num)):
